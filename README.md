@@ -1,5 +1,6 @@
 # libdatachannel - C/C++ WebRTC lightweight library
 
+Source: https://github.com/paullouisageneau/libdatachannel
 libdatachannel is a standalone implementation of WebRTC Data Channels, WebRTC Media Transport, and WebSockets in C++17 with C bindings for POSIX platforms (including GNU/Linux, Android, and Apple macOS) and Microsoft Windows.
 
 The library aims at being both straightforward and lightweight with minimal external dependencies, to enable direct connectivity between native applications and web browsers without the pain of importing Google's bloated [reference library](https://webrtc.googlesource.com/src/). The interface consists of somewhat simplified versions of the JavaScript WebRTC and WebSocket APIs present in browsers, in order to ease the design of cross-environment applications.
