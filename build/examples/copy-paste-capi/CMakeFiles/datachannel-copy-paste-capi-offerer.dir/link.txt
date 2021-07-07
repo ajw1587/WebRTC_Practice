@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/datachannel-copy-paste-capi-offerer.dir/offerer.c.o -o offerer  -Wl,-rpath,/home/hiw/WebRTC2/libdatachannel/build ../../libdatachannel.so.0.13.4 -pthread 

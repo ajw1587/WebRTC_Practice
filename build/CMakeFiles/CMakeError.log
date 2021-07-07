@@ -1,0 +1,239 @@
+Performing C++ SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_ba635/fast && /usr/bin/make  -f CMakeFiles/cmTC_ba635.dir/build.make CMakeFiles/cmTC_ba635.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ba635.dir/src.cxx.o
+/usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -fPIE -o CMakeFiles/cmTC_ba635.dir/src.cxx.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_ba635
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ba635.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_ba635.dir/src.cxx.o -o cmTC_ba635 
+CMakeFiles/cmTC_ba635.dir/src.cxx.o: In function `main':
+src.cxx:(.text+0x3e): undefined reference to `pthread_create'
+src.cxx:(.text+0x4a): undefined reference to `pthread_detach'
+src.cxx:(.text+0x56): undefined reference to `pthread_cancel'
+src.cxx:(.text+0x67): undefined reference to `pthread_join'
+src.cxx:(.text+0x7b): undefined reference to `pthread_atfork'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_ba635.dir/build.make:98: recipe for target 'cmTC_ba635' failed
+make[1]: *** [cmTC_ba635] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_ba635/fast' failed
+make: *** [cmTC_ba635/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Performing C SOURCE FILE Test have_sa_len failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_7298e/fast && /usr/bin/make  -f CMakeFiles/cmTC_7298e.dir/build.make CMakeFiles/cmTC_7298e.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7298e.dir/src.c.o
+/usr/bin/cc -Dhave_sa_len -I/home/hiw/WebRTC2/libdatachannel/deps/usrsctp/usrsctplib -fPIE -o CMakeFiles/cmTC_7298e.dir/src.c.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c: In function ‘main’:
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c:7:38: error: ‘struct sockaddr’ has no member named ‘sa_len’
+   (void)sizeof(((struct sockaddr *)0)->sa_len);
+                                      ^~
+CMakeFiles/cmTC_7298e.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_7298e.dir/src.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_7298e.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_7298e/fast' failed
+make: *** [cmTC_7298e/fast] Error 2
+
+
+Source file was:
+
+#include <sys/types.h>
+#include <sys/socket.h>
+
+int main()
+{
+  (void)sizeof(((struct sockaddr *)0)->sa_len);
+  return 0;
+}
+
+Performing C SOURCE FILE Test have_sin_len failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_ca634/fast && /usr/bin/make  -f CMakeFiles/cmTC_ca634.dir/build.make CMakeFiles/cmTC_ca634.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ca634.dir/src.c.o
+/usr/bin/cc -Dhave_sin_len -I/home/hiw/WebRTC2/libdatachannel/deps/usrsctp/usrsctplib -fPIE -o CMakeFiles/cmTC_ca634.dir/src.c.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c: In function ‘main’:
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c:7:43: error: ‘struct sockaddr_in’ has no member named ‘sin_len’; did you mean ‘sin_zero’?
+   (void)sizeof(((struct sockaddr_in *)0)->sin_len);
+                                           ^~~~~~~
+                                           sin_zero
+CMakeFiles/cmTC_ca634.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_ca634.dir/src.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_ca634.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_ca634/fast' failed
+make: *** [cmTC_ca634/fast] Error 2
+
+
+Source file was:
+
+#include <sys/types.h>
+#include <netinet/in.h>
+
+int main()
+{
+  (void)sizeof(((struct sockaddr_in *)0)->sin_len);
+  return 0;
+}
+
+Performing C SOURCE FILE Test have_sin6_len failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_ccfe9/fast && /usr/bin/make  -f CMakeFiles/cmTC_ccfe9.dir/build.make CMakeFiles/cmTC_ccfe9.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ccfe9.dir/src.c.o
+/usr/bin/cc -Dhave_sin6_len -I/home/hiw/WebRTC2/libdatachannel/deps/usrsctp/usrsctplib -fPIE -o CMakeFiles/cmTC_ccfe9.dir/src.c.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c: In function ‘main’:
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c:7:44: error: ‘struct sockaddr_in6’ has no member named ‘sin6_len’; did you mean ‘sin6_port’?
+   (void)sizeof(((struct sockaddr_in6 *)0)->sin6_len);
+                                            ^~~~~~~~
+                                            sin6_port
+CMakeFiles/cmTC_ccfe9.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_ccfe9.dir/src.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_ccfe9.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_ccfe9/fast' failed
+make: *** [cmTC_ccfe9/fast] Error 2
+
+
+Source file was:
+
+#include <sys/types.h>
+#include <netinet/in.h>
+
+int main()
+{
+  (void)sizeof(((struct sockaddr_in6 *)0)->sin6_len);
+  return 0;
+}
+
+Performing C SOURCE FILE Test have_sconn_len failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_a5e29/fast && /usr/bin/make  -f CMakeFiles/cmTC_a5e29.dir/build.make CMakeFiles/cmTC_a5e29.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a5e29.dir/src.c.o
+/usr/bin/cc -Dhave_sconn_len -I/home/hiw/WebRTC2/libdatachannel/deps/usrsctp/usrsctplib -fPIE -o CMakeFiles/cmTC_a5e29.dir/src.c.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c: In function ‘main’:
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/src.c:6:45: error: ‘struct sockaddr_conn’ has no member named ‘sconn_len’; did you mean ‘sconn_port’?
+   (void)sizeof(((struct sockaddr_conn *)0)->sconn_len);
+                                             ^~~~~~~~~
+                                             sconn_port
+CMakeFiles/cmTC_a5e29.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_a5e29.dir/src.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_a5e29.dir/src.c.o] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_a5e29/fast' failed
+make: *** [cmTC_a5e29/fast] Error 2
+
+
+Source file was:
+
+#include <usrsctp.h>
+
+int main()
+{
+  (void)sizeof(((struct sockaddr_conn *)0)->sconn_len);
+  return 0;
+}
+
+Determining if the include file machine/types.h exists failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_014fc/fast && /usr/bin/make  -f CMakeFiles/cmTC_014fc.dir/build.make CMakeFiles/cmTC_014fc.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_014fc.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -fPIE -o CMakeFiles/cmTC_014fc.dir/CheckIncludeFile.c.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: machine/types.h: No such file or directory
+ #include <machine/types.h>
+          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_014fc.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_014fc.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_014fc.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_014fc/fast' failed
+make: *** [cmTC_014fc/fast] Error 2
+
+
+
+Determining if the include file sys/int_types.h exists failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_f6a38/fast && /usr/bin/make  -f CMakeFiles/cmTC_f6a38.dir/build.make CMakeFiles/cmTC_f6a38.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f6a38.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -fPIE -o CMakeFiles/cmTC_f6a38.dir/CheckIncludeFile.c.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: sys/int_types.h: No such file or directory
+ #include <sys/int_types.h>
+          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_f6a38.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_f6a38.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_f6a38.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_f6a38/fast' failed
+make: *** [cmTC_f6a38/fast] Error 2
+
+
+
+Determining if the include file windows.h exists failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_51fd8/fast && /usr/bin/make  -f CMakeFiles/cmTC_51fd8.dir/build.make CMakeFiles/cmTC_51fd8.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_51fd8.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -fPIE -o CMakeFiles/cmTC_51fd8.dir/CheckIncludeFile.c.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: windows.h: No such file or directory
+ #include <windows.h>
+          ^~~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_51fd8.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_51fd8.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_51fd8.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_51fd8/fast' failed
+make: *** [cmTC_51fd8/fast] Error 2
+
+
+
+Determining if the include file winsock2.h exists failed with the following output:
+Change Dir: /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_46358/fast && /usr/bin/make  -f CMakeFiles/cmTC_46358.dir/build.make CMakeFiles/cmTC_46358.dir/build
+make[1]: Entering directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_46358.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -fPIE -o CMakeFiles/cmTC_46358.dir/CheckIncludeFile.c.o -c /home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: winsock2.h: No such file or directory
+ #include <winsock2.h>
+          ^~~~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_46358.dir/build.make:77: recipe for target 'CMakeFiles/cmTC_46358.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_46358.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/hiw/WebRTC2/libdatachannel/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_46358/fast' failed
+make: *** [cmTC_46358/fast] Error 2
+
+
+

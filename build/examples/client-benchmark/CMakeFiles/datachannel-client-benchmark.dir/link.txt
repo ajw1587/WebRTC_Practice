@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/datachannel-client-benchmark.dir/main.cpp.o CMakeFiles/datachannel-client-benchmark.dir/parse_cl.cpp.o -o client-benchmark  -Wl,-rpath,/home/hiw/WebRTC2/libdatachannel/build ../../libdatachannel.so.0.13.4 -pthread 
