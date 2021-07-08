@@ -72,31 +72,33 @@ int main(int argc, char **argv) try {
 		config.iceServers.emplace_back(stunServer);
 	}
 
-	localId = randomId(4);										# Local ID Random 생성
-	cout << "The local ID is: " << localId << endl;							# Local ID print
+	localId = randomId(4);										// Local ID Random 생성
+	cout << "The local ID is: " << localId << endl;							// Local ID print
 
-	auto ws = make_shared<WebSocket>();								# WebSocket 포인터 생성
-													# make_shared: Smart Pointer
-	std::promise<void> wsPromise;									# 비동기적 실행, promise에 Data를 입력한다
-	auto wsFuture = wsPromise.get_future();								# promise의 Data를 받는다
+	auto ws = make_shared<WebSocket>();								// WebSocket 포인터 생성
+													// make_shared: Smart Pointer
+	std::promise<void> wsPromise;									// 비동기적 실행, promise에 Data를 입력한다
+	auto wsFuture = wsPromise.get_future();								// promise의 Data를 받는다
 
-	ws->onOpen([&wsPromise]() {									# WebSocket Open되면 호출되는 이벤트
+	ws->onOpen([&wsPromise]() {									// WebSocket Open되면 호출되는 이벤트
 		cout << "WebSocket connected, signaling ready" << endl;
 		wsPromise.set_value();
 	});
 
-	ws->onError([&wsPromise](string s) {								# WebSocket Error발생하면 호출되는 이벤트
+	ws->onError([&wsPromise](string s) {								// WebSocket Error발생하면 호출되는 이벤트
 		cout << "WebSocket error" << endl;
 		wsPromise.set_exception(std::make_exception_ptr(std::runtime_error(s)));
 	});
 
-	ws->onClosed([]() { cout << "WebSocket closed" << endl; });					# WebSocket Close되면 호출되는 이벤트
+	ws->onClosed([]() { cout << "WebSocket closed" << endl; });					// WebSocket Close되면 호출되는 이벤트
 
-	ws->onMessage([&](variant<binary, string> data) {						# Client -> Server 메시지 보내면 호출되는 이벤트
-		if (!holds_alternative<string>(data))							# holds_alternative: data의 자료형이 string이면 true, 아니면 false
+	ws->onMessage([&](variant<binary, string> data) {						// Client -> Server 메시지 보내면 호출되는 이벤트, data는 binary or string 형이다
+		if (!holds_alternative<string>(data))							// holds_alternative: data의 자료형이 string이면 true, 아니면 false
 			return;
 
-		json message = json::parse(get<string>(data));
+		cout << "Data: " << data << endl;
+
+		json message = json::parse(get<string>(data));						// get<type>: type인 data를 얻는다, json형태로 바꾼다
 
 		auto it = message.find("id");
 		if (it == message.end())
