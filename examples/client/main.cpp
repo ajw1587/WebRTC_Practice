@@ -44,8 +44,8 @@ using json = nlohmann::json;
 
 template <class T> weak_ptr<T> make_weak_ptr(shared_ptr<T> ptr) { return ptr; }
 
-unordered_map<string, shared_ptr<PeerConnection>> peerConnectionMap;	// shared_ptr: smart pointer 
-unordered_map<string, shared_ptr<DataChannel>> dataChannelMap;		// shared_ptr: smart pointer
+unordered_map<string, shared_ptr<PeerConnection>> peerConnectionMap;					// shared_ptr: smart pointer , unordered_map: key,value 자료구조
+unordered_map<string, shared_ptr<DataChannel>> dataChannelMap;						// shared_ptr: smart pointer , unordered_map: key,value 자료구조
 
 string localId;
 
