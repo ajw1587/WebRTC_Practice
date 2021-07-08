@@ -20,7 +20,7 @@
 #include <stdlib.h>
 
 #if defined(_WIN32) || defined(WIN32)
-#include "getopt.h"
+#include "getopt.h"										// 명령어 설정
 #else
 #include <getopt.h>
 #endif
@@ -37,11 +37,11 @@
 
 Cmdline::Cmdline (int argc, char *argv[]) // ISO C++17 not allowed: throw (std::string )
 {
-  extern char *optarg;
+  extern char *optarg;										// 명령어를 받기 위한 변수
   extern int optind;
   int c;
 
-  static struct option long_options[] =
+  static struct option long_options[] =								// 명령어 종류 선언
   {
     {"noStun", no_argument, NULL, 'n'},
     {"stunServer", required_argument, NULL, 's'},
